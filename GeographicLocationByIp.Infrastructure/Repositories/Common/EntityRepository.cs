@@ -24,7 +24,7 @@ namespace GeographicLocationByIp.Infrastructure.Repositories.Common
             return null;
         }
 
-        public async Task Add(TEntity entity)
+        public async Task Addasync(TEntity entity)
         {
             await Context.Set<TEntity>().AddAsync(entity);
         }

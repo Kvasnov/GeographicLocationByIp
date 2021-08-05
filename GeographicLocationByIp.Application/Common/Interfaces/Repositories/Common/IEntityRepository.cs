@@ -8,7 +8,7 @@ namespace GeographicLocationByIp.Application.Common.Interfaces.Repositories.Comm
     {
         IQueryable<TEntity> GetAll();
         Task<TEntity> GetById(Guid entityId);
-        Task Add(TEntity entity);
+        Task Addasync(TEntity entity);
         Task Update(TEntity entity);
         Task SaveAsync();
     }

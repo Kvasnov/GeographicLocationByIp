@@ -7,6 +7,6 @@ namespace GeographicLocationByIp.Application.Common.Interfaces.Repositories
 {
     public interface IGeographicLocationRepository : IEntityRepository<GeographicLocation>
     {
-        Task<GeographicLocationDto> FindByIp(string ipAddress);
+        Task<GeographicLocationDto> FindByIpAsync(string ipAddress);
     }
 }

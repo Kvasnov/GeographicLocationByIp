@@ -17,7 +17,7 @@ namespace GeographicLocationByIp.Infrastructure.Repositories
 
         private readonly IMapper mapper;
 
-        public async Task<GeographicLocationDto> FindByIp(string ipAddress)
+        public async Task<GeographicLocationDto> FindByIpAsync(string ipAddress)
         {
             var geoInfo = await Context.GeographicLocations.SingleOrDefaultAsync(location => string.Equals(location.IpAddress, ipAddress));
 

@@ -24,13 +24,13 @@ namespace GeographicLocationByIp.Application.Mediators.Handlers
 
         public async Task<GeographicLocationDto> Handle(GetGeoInfoQuery request, CancellationToken cancellationToken)
         {
-            var existingGeoInfo = await locationRepository.FindByIp(request.IpAddress);
+            var existingGeoInfo = await locationRepository.FindByIpAsync(request.IpAddress);
 
             if (existingGeoInfo != null)
                 return existingGeoInfo;
 
             var geoInfo = await client.GetGeoInfo(request.IpAddress);
-            await locationRepository.Add(geoInfo);
+            await locationRepository.Addasync(geoInfo);
             await locationRepository.SaveAsync();
 
             return mapper.Map<GeographicLocationDto>(geoInfo);
