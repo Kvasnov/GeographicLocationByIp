@@ -36,5 +36,24 @@ namespace GeographicLocationByIp.Application.MaxMindGeoLite
                        };
             }
         }
+
+        public async Task<GeographicLocation> UpdateGeoInfo(GeographicLocation geographicLocation)
+        {
+            using (var client = new WebServiceClient(geoLiteClientSettings.Value.AccountId, geoLiteClientSettings.Value.LicenseKey, host: "geolite.info"))
+            {
+                var response = await client.CityAsync(geographicLocation.IpAddress);
+
+                geographicLocation.CountryName = response.Country.Name;
+                geographicLocation.CountryNameRu = response.Country.Names[ "ru" ];
+                geographicLocation.CityName = response.City.Name;
+                geographicLocation.CityNameRu = response.City.Names[ "ru" ];
+                geographicLocation.Latitude = response.Location.Latitude;
+                geographicLocation.Longitude = response.Location.Longitude;
+                geographicLocation.IsoCode = response.Country.IsoCode;
+                geographicLocation.GeoNameId = response.Continent.GeoNameId;
+
+                return geographicLocation;
+            }
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace GeographicLocationByIp.Infrastructure.Repositories.Common
 
         public IQueryable<TEntity> GetAll()
         {
-            return null;
+            return Context.Set<TEntity>().AsQueryable();
         }
 
         public Task<TEntity> GetById(Guid entityId)
@@ -29,9 +29,9 @@ namespace GeographicLocationByIp.Infrastructure.Repositories.Common
             await Context.Set<TEntity>().AddAsync(entity);
         }
 
-        public Task Update(TEntity entity)
+        public async Task Update(TEntity entity)
         {
-            return null;
+            await Task.Run(() => Context.Set<TEntity>().Update(entity));
         }
 
         public async Task SaveAsync()
